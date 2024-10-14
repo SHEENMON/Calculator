@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Calculator</title>
+</head>
+<body>
+	Enter first number: <input type="number" id="input1">
+	Enter second number: <input type="number" id="input2">
+	<select id="operation">
+		<option value="+">+</option>
+		<option value="-">-</option>
+		<option value="*">*</option>
+		<option value="/">/</option>
+	</select>
+
+	<button id="calculateButton">=</button>
+
+	Result: <input type="text" id="result" readonly>
+
+	<script type="text/javascript">
+		    function add(a,b) {
+           	return a+b;
+           }
+           function sub(a,b) {
+           	return a-b;
+           }
+           function mult(a,b) {
+           	return a*b;
+           }
+           function div(a,b) {
+           	return a/b;}
+		document.getElementById("calculateButton").addEventListener("click", function() {
+
+			var a = document.getElementById("input1").value;
+			var b = document.getElementById("input2").value;
+			var operation = document.getElementById("operation").value;
+			var result;
+
+			if (a === "" ||b === "") {
+				document.getElementById("result").value = "Error: Please enter both numbers.";
+				return;
+			}
+
+			a = parseFloat(a);
+			b = parseFloat(b);
+
+             
+
+			if (operation === "+") {
+				result =add(a,b);
+			} else if (operation === "-") {
+				result =sub(a,b);
+			} else if (operation === "*") {
+				result =mult(a,b);
+			} else if (operation === "/") {
+				result =div(a,b);
+			}
+
+
+				document.getElementById("result").value = result;
+			});
+		</script>
+	</body>
+	</html>
