@@ -4,41 +4,69 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Calculator</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
-<body>
-	Enter first number: <input type="number" id="input1">
-	Enter second number: <input type="number" id="input2">
-	<select id="operation">
-		<option value="+">+</option>
-		<option value="-">-</option>
-		<option value="*">*</option>
-		<option value="/">/</option>
-	</select>
+<body class="bg-light">
+	<div class="container mt-5">
+		<div class="card shadow-sm">
+			<div class="card-body">
+				<h3 class="card-title text-center mb-4">Simple Calculator</h3>
+				<form>
+					<div class="mb-3">
+						<label for="input1" class="form-label">Enter First Number</label>
+						<input type="number" class="form-control" id="input1" placeholder="First number">
+					</div>
+					<div class="mb-3">
+						<label for="input2" class="form-label">Enter Second Number</label>
+						<input type="number" class="form-control" id="input2" placeholder="Second number">
+					</div>
+					<div class="mb-3">
+						<label for="operation" class="form-label">Select Operation</label>
+						<select class="form-select" id="operation">
+							<option value="+">Addition (+)</option>
+							<option value="-">Subtraction (-)</option>
+							<option value="*">Multiplication (*)</option>
+							<option value="/">Division (/)</option>
+						</select>
+					</div>
+					<div class="d-grid">
+						<button type="button" class="btn btn-primary" id="calculateButton">Calculate</button>
+					</div>
+				</form>
+				<hr>
+				<div class="mb-3">
+					<label for="result" class="form-label">Result</label>
+					<input type="text" class="form-control" id="result" placeholder="Result will be displayed here" readonly>
+				</div>
+			</div>
+		</div>
+	</div>
 
-	<button id="calculateButton">=</button>
-
-	Result: <input type="text" id="result" readonly>
-
-	<script type="text/javascript">
-		    function add(a,b) {
-           	return a+b;
-           }
-           function sub(a,b) {
-           	return a-b;
-           }
-           function mult(a,b) {
-           	return a*b;
-           }
-           function div(a,b) {
-           	return a/b;}
-		document.getElementById("calculateButton").addEventListener("click", function() {
-
+	<!-- JavaScript -->
+	<script>
+		function add(a, b) {
+			return a + b;
+		}
+		function sub(a, b) {
+			return a - b;
+		}
+		function mult(a, b) {
+			return a * b;
+		}
+		function div(a, b) {
+			return a / b;
+		}
+		document.getElementById("calculateButton").addEventListener("click", function () {
 			var a = document.getElementById("input1").value;
 			var b = document.getElementById("input2").value;
 			var operation = document.getElementById("operation").value;
 			var result;
 
-			if (a === "" ||b === "") {
+			if (a === "" || b === "") {
 				document.getElementById("result").value = "Error: Please enter both numbers.";
 				return;
 			}
@@ -46,21 +74,23 @@
 			a = parseFloat(a);
 			b = parseFloat(b);
 
-             
-
 			if (operation === "+") {
-				result =add(a,b);
+				result = add(a, b);
 			} else if (operation === "-") {
-				result =sub(a,b);
+				result = sub(a, b);
 			} else if (operation === "*") {
-				result =mult(a,b);
+				result = mult(a, b);
 			} else if (operation === "/") {
-				result =div(a,b);
+				if (b === 0) {
+					result = "Error: Division by zero.";
+				} else {
+					result = div(a, b);
+				}
 			}
 
+			document.getElementById("result").value = result;
+		});
+	</script>
 
-				document.getElementById("result").value = result;
-			});
-		</script>
-	</body>
-	</html>
+</body>
+</html>
